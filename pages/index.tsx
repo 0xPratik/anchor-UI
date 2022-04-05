@@ -3,16 +3,58 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { Box, Text, Heading, Flex, Center, Stack } from "@chakra-ui/react";
+import { useForm } from 'react-hook-form'
 import {
   FormControl,
   FormLabel,
   FormErrorMessage,
   FormHelperText,
   Input,
+  Button,
 } from "@chakra-ui/react";
 import Navbar from "../components/Navbar";
+import {IDL} from "../idl/chat";
 
 const Home: NextPage = () => {
+  /// Some nerd thing doing here, to learn react on the fly :<>
+  // for (const element of IDL['instructions']) {
+  //   console.log("======================")
+  //   console.log(element.name);
+  // }
+
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+  } = useForm()
+
+
+  const RenderList = (props: any) => {
+    console.log("itemComponentReceived :: ", props)
+    return (
+      <>
+        <FormControl>
+          <Heading pb={4}>{props.ixInfo.name}</Heading>
+          {/* Each Account Name  */}
+          {props.ixInfo.accounts.map(items => <>
+            <FormLabel>{items.name}</FormLabel>
+            <Input type="text" />
+            <FormHelperText pb={8}>isMutable::{items.isMut ? 'true' : 'false'} and isSigner::{items.isSigner ? 'true' : 'false'}</FormHelperText>
+          </>
+          )}
+        </FormControl>
+        <Button mt={4} colorScheme='teal' isLoading={isSubmitting} type='submit'>
+        Submit
+      </Button>
+      </>
+    );
+  };
+
+
+  const ixList = IDL['instructions'].map(() => {
+
+  })
+
   return (
     <Box bg="gray.50" minH="100vh">
       <Head>
@@ -33,32 +75,13 @@ const Home: NextPage = () => {
             boxShadow={"lg"}
           >
             {/* Name of the Ix  */}
-            <Heading pb={4}>CreateNFT</Heading>
+            <Heading pb={4}>{IDL['name']}</Heading>
+
+
             <Stack spacing="4">
-              <FormControl>
-                {/* Each Account Name  */}
-                <FormLabel>masterEdition</FormLabel>
-                {/* Each Account Input Field */}
-                <Input type="text" />
-                {/* Error Message Log or helper text for that account */}
-                <FormErrorMessage>We never share your email.</FormErrorMessage>
-              </FormControl>
-              <FormControl>
-                <FormLabel>metadataMint</FormLabel>
-                <Input type="text" />
-                <FormHelperText>isMutable and isSigner</FormHelperText>
-              </FormControl>
-              <FormControl>
-                <FormLabel>updateAuth</FormLabel>
-                <Input type="text" />
-                <FormHelperText>isMutable and isSigner</FormHelperText>
-              </FormControl>
-              <FormControl>
-                <FormLabel>mplProgram</FormLabel>
-                <Input type="text" />
-                <FormHelperText>isMutable and isSigner</FormHelperText>
-              </FormControl>
+              {IDL['instructions'].map(item => <RenderList key={item.name} ixInfo={item} />)}
             </Stack>
+
           </Box>
         </Flex>
       </Box>
