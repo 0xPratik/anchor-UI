@@ -1,323 +1,453 @@
-export type Chat = {
-  "version": "0.1.0",
-  "name": "chat",
-  "instructions": [
+export type SolStore = {
+  version: "0.1.0";
+  name: "sol_store";
+  instructions: [
     {
-      "name": "createUser",
-      "accounts": [
+      name: "createMerchant";
+      accounts: [
         {
-          "name": "user",
-          "isMut": true,
-          "isSigner": false
+          name: "authority";
+          isMut: true;
+          isSigner: true;
         },
         {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
+          name: "merchant";
+          isMut: true;
+          isSigner: false;
         },
         {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": [
+          name: "systemProgram";
+          isMut: false;
+          isSigner: false;
+        },
         {
-          "name": "name",
-          "type": "string"
+          name: "rent";
+          isMut: false;
+          isSigner: false;
         }
-      ]
+      ];
+      args: [
+        {
+          name: "name";
+          type: "string";
+        }
+      ];
     },
     {
-      "name": "createChatRoom",
-      "accounts": [
+      name: "txWithCouponSol";
+      accounts: [
         {
-          "name": "chatRoom",
-          "isMut": true,
-          "isSigner": false
-        }
-      ],
-      "args": [
-        {
-          "name": "name",
-          "type": "string"
-        }
-      ]
-    },
-    {
-      "name": "sendMessage",
-      "accounts": [
-        {
-          "name": "user",
-          "isMut": false,
-          "isSigner": false
+          name: "authority";
+          isMut: true;
+          isSigner: true;
         },
         {
-          "name": "authority",
-          "isMut": false,
-          "isSigner": true
+          name: "metadata";
+          isMut: true;
+          isSigner: false;
         },
         {
-          "name": "chatRoom",
-          "isMut": true,
-          "isSigner": false
-        }
-      ],
-      "args": [
+          name: "mint";
+          isMut: true;
+          isSigner: false;
+        },
         {
-          "name": "msg",
-          "type": "string"
+          name: "merchant";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "masterEdition";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "mplProgram";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "tokenProgram";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "systemProgram";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "recipient";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "rent";
+          isMut: false;
+          isSigner: false;
         }
-      ]
-    }
-  ],
-  "accounts": [
-    {
-      "name": "user",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "name",
-            "type": "string"
-          },
-          {
-            "name": "authority",
-            "type": "publicKey"
-          },
-          {
-            "name": "bump",
-            "type": "u8"
-          }
-        ]
-      }
+      ];
+      args: [
+        {
+          name: "fundAmount";
+          type: "u64";
+        }
+      ];
     },
     {
-      "name": "chatRoom",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "head",
-            "type": "u64"
-          },
-          {
-            "name": "tail",
-            "type": "u64"
-          },
-          {
-            "name": "name",
-            "type": {
-              "array": [
-                "u8",
-                280
-              ]
-            }
-          },
-          {
-            "name": "messages",
-            "type": {
-              "array": [
-                {
-                  "defined": "Message"
-                },
-                33607
-              ]
-            }
-          }
-        ]
-      }
+      name: "txWithCouponSpl";
+      accounts: [
+        {
+          name: "authority";
+          isMut: true;
+          isSigner: true;
+        },
+        {
+          name: "metadata";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "mint";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "merchant";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "masterEdition";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "mplProgram";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "authoritySplTokenAccount";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "merchantSplTokenAccount";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "tokenProgram";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "systemProgram";
+          isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "recipient";
+          isMut: true;
+          isSigner: false;
+        },
+        {
+          name: "rent";
+          isMut: false;
+          isSigner: false;
+        }
+      ];
+      args: [
+        {
+          name: "name";
+          type: "string";
+        },
+        {
+          name: "symbol";
+          type: "string";
+        },
+        {
+          name: "uri";
+          type: "string";
+        },
+        {
+          name: "sellerFeeBasisPoints";
+          type: "u16";
+        },
+        {
+          name: "isMutable";
+          type: "bool";
+        },
+        {
+          name: "amount";
+          type: "u64";
+        }
+      ];
     }
-  ],
-  "types": [
+  ];
+  accounts: [
     {
-      "name": "Message",
-      "type": {
-        "kind": "struct",
-        "fields": [
+      name: "merchant";
+      type: {
+        kind: "struct";
+        fields: [
           {
-            "name": "from",
-            "type": "publicKey"
+            name: "name";
+            type: "string";
           },
           {
-            "name": "data",
-            "type": {
-              "array": [
-                "u8",
-                280
-              ]
-            }
+            name: "authority";
+            type: "publicKey";
+          },
+          {
+            name: "bump";
+            type: "u8";
+          },
+          {
+            name: "noOfNftMinted";
+            type: "i64";
+          },
+          {
+            name: "noOfNftBurned";
+            type: "i64";
           }
-        ]
-      }
+        ];
+      };
     }
-  ],
-  "errors": [
+  ];
+  errors: [
     {
-      "code": 6000,
-      "name": "Unknown"
+      code: 6000;
+      name: "AmountisLow";
+      msg: "the Provided Amount is Pretty Low";
     }
-  ]
+  ];
 };
 
-export const IDL: Chat = {
-  "version": "0.1.0",
-  "name": "chat",
-  "instructions": [
+export const IDL: SolStore = {
+  version: "0.1.0",
+  name: "sol_store",
+  instructions: [
     {
-      "name": "createUser",
-      "accounts": [
+      name: "createMerchant",
+      accounts: [
         {
-          "name": "user",
-          "isMut": true,
-          "isSigner": false
+          name: "authority",
+          isMut: true,
+          isSigner: true,
         },
         {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
+          name: "merchant",
+          isMut: true,
+          isSigner: false,
         },
         {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        }
+          name: "systemProgram",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "rent",
+          isMut: false,
+          isSigner: false,
+        },
       ],
-      "args": [
+      args: [
         {
-          "name": "name",
-          "type": "string"
-        }
-      ]
+          name: "name",
+          type: "string",
+        },
+      ],
     },
     {
-      "name": "createChatRoom",
-      "accounts": [
+      name: "txWithCouponSol",
+      accounts: [
         {
-          "name": "chatRoom",
-          "isMut": true,
-          "isSigner": false
-        }
-      ],
-      "args": [
-        {
-          "name": "name",
-          "type": "string"
-        }
-      ]
-    },
-    {
-      "name": "sendMessage",
-      "accounts": [
-        {
-          "name": "user",
-          "isMut": false,
-          "isSigner": false
+          name: "authority",
+          isMut: true,
+          isSigner: true,
         },
         {
-          "name": "authority",
-          "isMut": false,
-          "isSigner": true
+          name: "metadata",
+          isMut: true,
+          isSigner: false,
         },
         {
-          "name": "chatRoom",
-          "isMut": true,
-          "isSigner": false
-        }
-      ],
-      "args": [
+          name: "mint",
+          isMut: true,
+          isSigner: false,
+        },
         {
-          "name": "msg",
-          "type": "string"
-        }
-      ]
-    }
-  ],
-  "accounts": [
-    {
-      "name": "user",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "name",
-            "type": "string"
-          },
-          {
-            "name": "authority",
-            "type": "publicKey"
-          },
-          {
-            "name": "bump",
-            "type": "u8"
-          }
-        ]
-      }
+          name: "merchant",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "masterEdition",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "mplProgram",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "tokenProgram",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "systemProgram",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "recipient",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "rent",
+          isMut: false,
+          isSigner: false,
+        },
+      ],
+      args: [
+        {
+          name: "fundAmount",
+          type: "u64",
+        },
+      ],
     },
     {
-      "name": "chatRoom",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "head",
-            "type": "u64"
-          },
-          {
-            "name": "tail",
-            "type": "u64"
-          },
-          {
-            "name": "name",
-            "type": {
-              "array": [
-                "u8",
-                280
-              ]
-            }
-          },
-          {
-            "name": "messages",
-            "type": {
-              "array": [
-                {
-                  "defined": "Message"
-                },
-                33607
-              ]
-            }
-          }
-        ]
-      }
-    }
+      name: "txWithCouponSpl",
+      accounts: [
+        {
+          name: "authority",
+          isMut: true,
+          isSigner: true,
+        },
+        {
+          name: "metadata",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "mint",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "merchant",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "masterEdition",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "mplProgram",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "authoritySplTokenAccount",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "merchantSplTokenAccount",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "tokenProgram",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "systemProgram",
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "recipient",
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: "rent",
+          isMut: false,
+          isSigner: false,
+        },
+      ],
+      args: [
+        {
+          name: "name",
+          type: "string",
+        },
+        {
+          name: "symbol",
+          type: "string",
+        },
+        {
+          name: "uri",
+          type: "string",
+        },
+        {
+          name: "sellerFeeBasisPoints",
+          type: "u16",
+        },
+        {
+          name: "isMutable",
+          type: "bool",
+        },
+        {
+          name: "amount",
+          type: "u64",
+        },
+      ],
+    },
   ],
-  "types": [
+  accounts: [
     {
-      "name": "Message",
-      "type": {
-        "kind": "struct",
-        "fields": [
+      name: "merchant",
+      type: {
+        kind: "struct",
+        fields: [
           {
-            "name": "from",
-            "type": "publicKey"
+            name: "name",
+            type: "string",
           },
           {
-            "name": "data",
-            "type": {
-              "array": [
-                "u8",
-                280
-              ]
-            }
-          }
-        ]
-      }
-    }
+            name: "authority",
+            type: "publicKey",
+          },
+          {
+            name: "bump",
+            type: "u8",
+          },
+          {
+            name: "noOfNftMinted",
+            type: "i64",
+          },
+          {
+            name: "noOfNftBurned",
+            type: "i64",
+          },
+        ],
+      },
+    },
   ],
-  "errors": [
+  errors: [
     {
-      "code": 6000,
-      "name": "Unknown"
-    }
-  ]
+      code: 6000,
+      name: "AmountisLow",
+      msg: "the Provided Amount is Pretty Low",
+    },
+  ],
 };

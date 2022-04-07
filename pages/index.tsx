@@ -2,59 +2,21 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import { Box, Text, Heading, Flex, Center, Stack } from "@chakra-ui/react";
-import { useForm } from 'react-hook-form'
 import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-  Input,
-  Button,
+  Box,
+  Text,
+  Heading,
+  Flex,
+  Center,
+  Stack,
+  Container,
 } from "@chakra-ui/react";
 import Navbar from "../components/Navbar";
-import {IDL} from "../idl/chat";
+import IDL from "../idl/idl.json";
+import { Grid, GridItem } from "@chakra-ui/react";
+import InstructionForm from "../components/InstructionForm";
 
 const Home: NextPage = () => {
-  /// Some nerd thing doing here, to learn react on the fly :<>
-  // for (const element of IDL['instructions']) {
-  //   console.log("======================")
-  //   console.log(element.name);
-  // }
-
-  const {
-    handleSubmit,
-    register,
-    formState: { errors, isSubmitting },
-  } = useForm()
-
-
-  const RenderList = (props: any) => {
-    console.log("itemComponentReceived :: ", props)
-    return (
-      <>
-        <FormControl>
-          <Heading pb={4}>{props.ixInfo.name}</Heading>
-          {/* Each Account Name  */}
-          {props.ixInfo.accounts.map(items => <>
-            <FormLabel>{items.name}</FormLabel>
-            <Input type="text" />
-            <FormHelperText pb={8}>isMutable::{items.isMut ? 'true' : 'false'} and isSigner::{items.isSigner ? 'true' : 'false'}</FormHelperText>
-          </>
-          )}
-        </FormControl>
-        <Button mt={4} colorScheme='teal' isLoading={isSubmitting} type='submit'>
-        Submit
-      </Button>
-      </>
-    );
-  };
-
-
-  const ixList = IDL['instructions'].map(() => {
-
-  })
-
   return (
     <Box bg="gray.50" minH="100vh">
       <Head>
@@ -64,26 +26,22 @@ const Home: NextPage = () => {
       </Head>
       <Box>
         <Navbar />
-        <Flex py={8} align="center" justify={"center"} direction="column">
-          {/* The Things inside this Box need's to be made iterable iterable  */}
-          <Box
-            bg="white"
-            minW="lg"
-            p={8}
-            mt={4}
-            borderRadius="base"
-            boxShadow={"lg"}
-          >
-            {/* Name of the Ix  */}
-            <Heading pb={4}>{IDL['name']}</Heading>
-
-
-            <Stack spacing="4">
-              {IDL['instructions'].map(item => <RenderList key={item.name} ixInfo={item} />)}
-            </Stack>
-
-          </Box>
-        </Flex>
+        <Container maxW="container.xl" py={4}>
+          <Heading pb={4}>{IDL["name"]}</Heading>
+          <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+            {IDL["instructions"].map((ix, i) => {
+              return (
+                <GridItem key={i} w="100%">
+                  <InstructionForm
+                    ixName={ix["name"]}
+                    ixAccounts={ix["accounts"]}
+                    ixArgs={ix["args"]}
+                  />
+                </GridItem>
+              );
+            })}
+          </Grid>
+        </Container>
       </Box>
     </Box>
   );
