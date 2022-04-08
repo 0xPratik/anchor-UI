@@ -11,6 +11,9 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
+import * as anchor from "@project-serum/anchor";
+import { useAnchorWallet } from "@solana/wallet-adapter-react";
+import IDL from "../../idl/idl.json";
 
 interface accountType {
   name: string;
@@ -29,8 +32,42 @@ interface IxProps {
   ixArgs: Array<argsType>;
 }
 
+const opts = {
+  preflightCommitment: "processed" as anchor.web3.ConfirmOptions,
+};
+
 function InstructionForm({ ixName, ixAccounts, ixArgs }: IxProps) {
   const [initialValues, setInitialValues] = useState({});
+
+  const wallet = useAnchorWallet();
+
+  function getProvider() {
+    const network = "http://127.0.0.1:8899";
+    const connection = new anchor.web3.Connection(
+      network,
+      opts.preflightCommitment
+    );
+    if (!wallet) {
+      return;
+    }
+    const provider = new anchor.Provider(
+      connection,
+      wallet,
+      opts.preflightCommitment
+    );
+    console.log("Provider Set");
+    return provider;
+  }
+
+  const idl = IDL as anchor.Idl;
+
+  const mainFunction = async (programID: string) => {
+    if (typeof window !== "undefined") {
+      const prov = getProvider();
+      const program = new anchor.Program(idl, programID, prov);
+    }
+  };
+
   const getInitialValues = () => {
     let initialValues = {};
     const accountsValue = {};
