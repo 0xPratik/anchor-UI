@@ -1,52 +1,22 @@
 {
   "version": "0.1.0",
-  "name": "mpl_testing",
+  "name": "brianxyz",
   "instructions": [
     {
-      "name": "createNft",
+      "name": "initialize",
       "accounts": [
         {
-          "name": "masterEdition",
+          "name": "voteAccount",
           "isMut": true,
           "isSigner": false
         },
         {
-          "name": "metadataMint",
+          "name": "user",
           "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "updateAuth",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "mplProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "metadataAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "recieverAccount",
-          "isMut": true,
-          "isSigner": false
+          "isSigner": true
         },
         {
           "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "rent",
           "isMut": false,
           "isSigner": false
         }
@@ -54,69 +24,51 @@
       "args": []
     },
     {
-      "name": "createMetaData",
+      "name": "voteSuperMan",
       "accounts": [
         {
-          "name": "mplProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "metadata",
+          "name": "voteAccount",
           "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "mint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "payer",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "rent",
-          "isMut": false,
           "isSigner": false
         }
       ],
-      "args": [
+      "args": []
+    },
+    {
+      "name": "voteIronMan",
+      "accounts": [
         {
-          "name": "name",
-          "type": "string"
-        },
-        {
-          "name": "symbol",
-          "type": "string"
-        },
-        {
-          "name": "uri",
-          "type": "string"
-        },
-        {
-          "name": "sellerFeeBasisPoints",
-          "type": "u16"
-        },
-        {
-          "name": "isMutable",
-          "type": "bool"
+          "name": "voteAccount",
+          "isMut": true,
+          "isSigner": false
         }
-      ]
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "VoteAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "superMan",
+            "type": "u64"
+          },
+          {
+            "name": "ironMan",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
     }
   ],
   "metadata": {
-    "address": "2knkrWwqyeraXatCbYLUacXjn47qjh1R4HTNexRpks59"
+    "address": "Ckw9gdpG9qbeCTZN3uDzR9NMSZVgWe766Nh8YLNQDiSG"
   }
 }

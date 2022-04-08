@@ -14,8 +14,7 @@ import { Program } from "@project-serum/anchor";
 import { useFormik } from "formik";
 import * as anchor from "@project-serum/anchor";
 import { useAnchorWallet } from "@solana/wallet-adapter-react";
-import IDL from "../../idl/idl.json";
-import { MplTesting } from "../../idl/chat";
+import { IDL } from "../../idl/chat";
 
 interface accountType {
   name: string;
@@ -91,19 +90,21 @@ function InstructionForm({ ixName, ixAccounts, ixArgs }: IxProps) {
   const mainFunction = async (values: any) => {
     try {
       if (typeof window !== "undefined") {
+        setIsLoading(true);
         const prov = getProvider();
-        console.log("VALUES", values);
+        console.log("In Main VALUES", values);
         if (!values.programId) {
           return;
         }
         const programId = new anchor.web3.PublicKey(values.programId);
-        const program = new anchor.Program(
-          idl,
-          programId,
-          prov
-        ) as Program<MplTesting>;
-        console.log(values.accounts);
-        const tx = program.methods[ixName]().accounts(values.accounts).rpc();
+        const program = new anchor.Program(idl, programId, prov) as Program;
+        console.log("ACCOUNTS", values.accounts);
+        console.log("CALLING", ixName);
+        const tx = await program.methods[ixName]()
+          .accounts(values.accounts)
+          .rpc();
+        console.log("TX", tx);
+        setIsLoading(false);
       }
     } catch (error) {
       console.log(error);
@@ -116,9 +117,8 @@ function InstructionForm({ ixName, ixAccounts, ixArgs }: IxProps) {
     },
     onSubmit: async (values) => {
       try {
-        setIsLoading(true);
-        const response = await mainFunction(values);
-        setIsLoading(false);
+        console.log("OnSubmit Values", values);
+        mainFunction(values);
       } catch (error) {
         setIsLoading(false);
       }
