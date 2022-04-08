@@ -11,3 +11,19 @@ This project is Open Source and would love to get contributions by the Community
 https://youtu.be/af6giQIuOc8
 
 
+## Feature we are planning to add 
+
+- Create PDA’s with Seeds
+
+- Add SPL ix section
+
+- Autocomplete of commonly used accounts
+
+- Save the History of each and every test made in that session
+
+- Combine together multiple ix in one and test
+
+- Create Client Side Code Snippet for the created Ix
+
+- Copy Program Logs
+
