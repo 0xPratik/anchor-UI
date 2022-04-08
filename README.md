@@ -10,5 +10,6 @@ This project is Open Source and would love to get contributions by the Community
 
 <figure class="video_container">
   <iframe src="https://youtu.be/af6giQIuOc8" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
 
 
