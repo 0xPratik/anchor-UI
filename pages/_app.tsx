@@ -21,7 +21,7 @@ import {
 require("@solana/wallet-adapter-react-ui/styles.css");
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const endpoint = "https://api.devnet.solana.com";
+  const endpoint = "http://127.0.0.1:8899";
 
   const wallets = [
     new PhantomWalletAdapter(),

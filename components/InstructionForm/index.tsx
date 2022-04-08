@@ -10,10 +10,12 @@ import {
   Heading,
   Button,
 } from "@chakra-ui/react";
+import { Program } from "@project-serum/anchor";
 import { useFormik } from "formik";
 import * as anchor from "@project-serum/anchor";
 import { useAnchorWallet } from "@solana/wallet-adapter-react";
 import IDL from "../../idl/idl.json";
+import { MplTesting } from "../../idl/chat";
 
 interface accountType {
   name: string;
@@ -38,6 +40,31 @@ const opts = {
 
 function InstructionForm({ ixName, ixAccounts, ixArgs }: IxProps) {
   const [initialValues, setInitialValues] = useState({});
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const getInitialValues = () => {
+    let initialValues = {};
+    const accountsValue = {};
+    const argsValue = {};
+    ixAccounts.forEach((account) => {
+      accountsValue[account.name] = "";
+    });
+    ixArgs.forEach((arg) => {
+      argsValue[arg.name] = "";
+    });
+
+    initialValues = {
+      accounts: accountsValue,
+      args: argsValue,
+    };
+
+    return initialValues;
+  };
+
+  useEffect(() => {
+    const values = getInitialValues();
+    setInitialValues(values);
+  }, []);
 
   const wallet = useAnchorWallet();
 
@@ -61,44 +88,40 @@ function InstructionForm({ ixName, ixAccounts, ixArgs }: IxProps) {
 
   const idl = IDL as anchor.Idl;
 
-  const mainFunction = async (programID: string) => {
-    if (typeof window !== "undefined") {
-      const prov = getProvider();
-      const program = new anchor.Program(idl, programID, prov);
+  const mainFunction = async (values: any) => {
+    try {
+      if (typeof window !== "undefined") {
+        const prov = getProvider();
+        console.log("VALUES", values);
+        if (!values.programId) {
+          return;
+        }
+        const programId = new anchor.web3.PublicKey(values.programId);
+        const program = new anchor.Program(
+          idl,
+          programId,
+          prov
+        ) as Program<MplTesting>;
+        console.log(values.accounts);
+        const tx = program.methods[ixName]().accounts(values.accounts).rpc();
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
-
-  const getInitialValues = () => {
-    let initialValues = {};
-    const accountsValue = {};
-    const argsValue = {};
-    ixAccounts.forEach((account) => {
-      accountsValue[account.name] = "";
-    });
-    ixArgs.forEach((arg) => {
-      argsValue[arg.name] = "";
-    });
-
-    initialValues = {
-      accounts: accountsValue,
-      args: argsValue,
-    };
-
-    return initialValues;
-  };
-
-  useEffect(() => {
-    const values = getInitialValues();
-    console.log("V", values);
-    setInitialValues(values);
-  }, []);
 
   const formik = useFormik({
     initialValues: {
       ...initialValues,
     },
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values) => {
+      try {
+        setIsLoading(true);
+        const response = await mainFunction(values);
+        setIsLoading(false);
+      } catch (error) {
+        setIsLoading(false);
+      }
     },
   });
   return (
@@ -117,6 +140,16 @@ function InstructionForm({ ixName, ixAccounts, ixArgs }: IxProps) {
         Accounts
       </Text>
       <form onSubmit={formik.handleSubmit}>
+        <FormControl mb={4}>
+          <FormLabel htmlFor="programId">ProgramId</FormLabel>
+          <Input
+            id={`programId`}
+            name={`programId`}
+            type="text"
+            placeholder="programId"
+            onChange={formik.handleChange}
+          />
+        </FormControl>
         {ixAccounts.map((account, i) => {
           return (
             <FormControl key={i} mb={4}>
@@ -152,7 +185,13 @@ function InstructionForm({ ixName, ixAccounts, ixArgs }: IxProps) {
             </FormControl>
           );
         })}
-        <Button colorScheme="purple" mt={4} w="full" type="submit">
+        <Button
+          isLoading={isLoading}
+          colorScheme="purple"
+          mt={4}
+          w="full"
+          type="submit"
+        >
           Submit
         </Button>
       </form>
