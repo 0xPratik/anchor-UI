@@ -13,8 +13,9 @@ https://youtu.be/af6giQIuOc8
 
 ## Feature we are planning to add 
 
-- Create PDA’s with Seeds
 
+- Network Change
+- Create PDA’s with Seeds
 - Add SPL ix section
 
 - Autocomplete of commonly used accounts
