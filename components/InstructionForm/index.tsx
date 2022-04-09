@@ -10,11 +10,11 @@ import {
   Heading,
   Button,
 } from "@chakra-ui/react";
-import { Program } from "@project-serum/anchor";
+import { Program, IdlAccounts } from "@project-serum/anchor";
 import { useFormik } from "formik";
 import * as anchor from "@project-serum/anchor";
 import { useAnchorWallet } from "@solana/wallet-adapter-react";
-import { IDL } from "../../idl/chat";
+import { IDL, Brianxyz } from "../../idl/chat";
 
 interface accountType {
   name: string;
@@ -68,7 +68,7 @@ function InstructionForm({ ixName, ixAccounts, ixArgs }: IxProps) {
   const wallet = useAnchorWallet();
 
   function getProvider() {
-    const network = "http://127.0.0.1:8899";
+    const network = "https://api.devnet.solana.com";
     const connection = new anchor.web3.Connection(
       network,
       opts.preflightCommitment
@@ -88,6 +88,8 @@ function InstructionForm({ ixName, ixAccounts, ixArgs }: IxProps) {
   const idl = IDL as anchor.Idl;
 
   const mainFunction = async (values: any) => {
+    console.log("valuess :: ", values);
+
     try {
       if (typeof window !== "undefined") {
         setIsLoading(true);
@@ -97,13 +99,14 @@ function InstructionForm({ ixName, ixAccounts, ixArgs }: IxProps) {
           return;
         }
         const programId = new anchor.web3.PublicKey(values.programId);
-        const program = new anchor.Program(idl, programId, prov) as Program;
+        const program = new anchor.Program(idl, programId, prov) as Program<Brianxyz>;
         console.log("ACCOUNTS", values.accounts);
         console.log("CALLING", ixName);
         const tx = await program.methods[ixName]()
           .accounts(values.accounts)
           .rpc();
         console.log("TX", tx);
+        await FetchAccountIx(values);
         setIsLoading(false);
       }
     } catch (error) {
@@ -111,6 +114,22 @@ function InstructionForm({ ixName, ixAccounts, ixArgs }: IxProps) {
     }
   };
 
+  const FetchAccountIx = async (values: any) => {
+    const prov = getProvider();
+    const programId = new anchor.web3.PublicKey(values.programId);
+    const program = new anchor.Program(idl, programId, prov) as Program<Brianxyz>;
+
+    console.log("values.accounts", values.accounts)
+    console.log("values.accounts", typeof(values.accounts))
+
+    const allTxAccount = Object.keys(values.accounts);
+    console.log("account array maybe look like this ::", allTxAccount);
+
+    const accountValue = await program.account[allTxAccount[0]].fetch(new anchor.web3.PublicKey(values.accounts.voteAccount))
+
+    console.log("IronMan", accountValue.ironMan.toString())
+    console.log("SuperMan", accountValue.superMan.toString())
+  }
   const formik = useFormik({
     initialValues: {
       ...initialValues,
