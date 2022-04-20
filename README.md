@@ -29,3 +29,16 @@ https://youtu.be/af6giQIuOc8
 - Copy Program Logs
 - Support Solana Pay new Spec
 
+# Support 
+ Consider Supporting us:
+- SOL Address : DBcPYyWRE1TPASCLLXim2A1tX8uJacrzU9kqYZ9bio3Y
+
+## Contributions
+
+We encourage everyone to contribute, submit issues, PRs, discuss. Every kind of help is welcome.
+
+## Maintainers
+
+- [Pratik](https://github.com/0xPratik)
+- [Deep](https://github.com/0xdeepmehta)
+
