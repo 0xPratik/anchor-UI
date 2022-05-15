@@ -1,0 +1,46 @@
+{
+  "name": "anchor-ui-v1",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -H ::",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@headlessui/react": "^1.6.0",
+    "@heroicons/react": "^1.0.6",
+    "@json-editor/json-editor": "^2.7.0",
+    "@project-serum/anchor": "^0.24.2",
+    "@solana/wallet-adapter-base": "^0.9.5",
+    "@solana/wallet-adapter-react": "^0.15.4",
+    "@solana/wallet-adapter-react-ui": "^0.9.6",
+    "@solana/wallet-adapter-wallets": "^0.16.1",
+    "@solana/web3.js": "^1.41.4",
+    "add": "^2.0.6",
+    "classnames": "^2.3.1",
+    "formik": "^2.2.9",
+    "jsoneditor": "^9.7.4",
+    "jsoneditor-react": "^3.1.2",
+    "next": "12.1.5",
+    "react": "18.1.0",
+    "react-connect-elements": "^0.1.1",
+    "react-dom": "18.1.0",
+    "react-json-editor-ajrm": "2.5.9",
+    "react-xarrows": "^2.0.2",
+    "yarn": "^1.22.18"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.30",
+    "@types/react": "18.0.8",
+    "@types/react-dom": "18.0.3",
+    "@types/react-json-editor-ajrm": "^2.5.3",
+    "autoprefixer": "^10.4.5",
+    "eslint": "8.14.0",
+    "eslint-config-next": "12.1.5",
+    "postcss": "^8.4.12",
+    "tailwindcss": "^3.0.24",
+    "typescript": "4.6.4"
+  }
+}

@@ -1,0 +1,50 @@
+html {
+  --scrollbarBG: #2b2b2b;
+  --thumbBG: #000000;
+}
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG);
+  border-radius: 6px;
+  border: 3px solid var(--scrollbarBG);
+}
+#idleditor span {
+  color: #ffffff;
+  font-family: ;
+}
+
+#onchain::-webkit-scrollbar {
+  width: 2px;
+  height: 4px;  
+}
+
+#onchain {
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+#onchain::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+#onchain {
+  scrollbar-width: 0.5px;
+
+}
+#onchain::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG);
+  border-radius: 1px;
+  border: 1px solid #000000;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
