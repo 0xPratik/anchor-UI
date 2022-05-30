@@ -20,7 +20,7 @@ const JsonEditor = (props: Props) => {
         type="text"
         value={programId}
         onChange={(e) => setProgramId(e.target.value)}
-        className="text-white w-full bg-black p-2 focus:outline-none"
+        className="text-[#15f095] w-full bg-black p-2 focus:outline-none placeholder:text-[#15f095]"
         placeholder="Program Id"
       />
       <JSONInput

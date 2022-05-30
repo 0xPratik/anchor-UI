@@ -5,16 +5,7 @@ import * as anchor from "@project-serum/anchor";
 import { useAnchorWallet, useConnection } from "@solana/wallet-adapter-react";
 
 type Props = {};
-function makeid(length: number) {
-  var result = "";
-  var characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  var charactersLength = characters.length;
-  for (var i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  return result;
-}
+
 const Onchain = (props: Props) => {
   const { idl, programId } = useAuth();
   const wallet = useAnchorWallet();
@@ -139,21 +130,23 @@ const Onchain = (props: Props) => {
               <div className="h-[2.375rem] flex flex-row ">
                 <div className=" px-3 flex items-center text-left grow font-inter font-medium  text-xs overflow-x-auto overflow-y-auto">
                   <div className="flex flex-row">
-                    {accounts.map((account, key) => (
-                      <div
-                        key={key}
-                        onClick={() => setactiveAccount(key)}
-                        className={classNames(
-                          `uppercase mx-1 py-2 px-2 cursor-pointer ${
-                            activeAccount == key
-                              ? "border-b-[0.22rem] border-[#4A83EE]"
-                              : ""
-                          } `
-                        )}
-                      >
-                        <span className="font-medium">{account.name}</span>
-                      </div>
-                    ))}
+                    {accounts ? (
+                      accounts.map((account, key) => (
+                        <div
+                          key={key}
+                          onClick={() => setactiveAccount(key)}
+                          className={classNames(
+                            `uppercase mx-1 py-2 px-2 cursor-pointer ${
+                              activeAccount == key
+                                ? "border-b-[0.22rem] border-[#4A83EE]"
+                                : ""
+                            } `
+                          )}
+                        >
+                          <span className="font-medium">{account.name}</span>
+                        </div>
+                      ))
+                    ): "No Data"}
                   </div>
                 </div>
               </div>
