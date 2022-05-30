@@ -4,15 +4,7 @@ import AddressSelect from "../components/common/AddressSelect";
 
 
 const WalletConnect: NextPage = () => {
-  const networks = [
-    { name: "Testnet" },
-    { name: "mainnet" },
-    { name: "rinkyby" },
-    { name: "ropston" },
-    { name: "polygon" },
-    { name: "solana" },
-  ];
-  const [selected, setSelected] = useState(networks[0]);
+
   return (
     <div className="flex flex-row items-center justify-center h-3/5">
       <div className="bg-[#1A1A1A] w-64 h-36 p-4">
