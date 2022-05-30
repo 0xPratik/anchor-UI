@@ -23,7 +23,7 @@ https://youtu.be/af6giQIuOc8
 - Create Client Side Code Snippet for the created Ix
 
 - Copy Program Logs
-- Support Solana Pay new Spec
+
 
 # Support
 
