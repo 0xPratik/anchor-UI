@@ -1,10 +1,9 @@
 import type { NextPage } from "next";
+import Image from "next/image";
 import { useState } from "react";
 import AddressSelect from "../components/common/AddressSelect";
 
-
 const WalletConnect: NextPage = () => {
-
   return (
     <div className="flex flex-row items-center justify-center h-3/5">
       <div className="bg-[#1A1A1A] w-64 h-36 p-4">
@@ -23,16 +22,21 @@ const WalletConnect: NextPage = () => {
                 fill="white"
               />
             </svg>
-
+            <Image
+              src="/icons/walletconnect.svg"
+              alt="walletConnet"
+              width={14}
+              height={14}
+            />
             <p className="text-white font-inter font-medium text-sm px-1">
               Connect Wallet
             </p>
           </div>
-      
+
           <button
             className={`bg-[#4773E3]  font-medium text-xs mt-1 py-2 px-1 rounded-sm space-x-3 flex justify-center items-center h-fit`}
           >
-            <svg
+            {/* <svg
               width="18"
               height="14"
               viewBox="0 0 18 14"
@@ -43,7 +47,13 @@ const WalletConnect: NextPage = () => {
                 d="M16.3719 6.90348H14.5009C14.5009 3.0907 11.3993 0 7.57291 0C3.79395 0 0.72159 3.01504 0.646395 6.76251C0.568602 10.6362 4.21577 14 8.10374 14H8.59281C12.0205 14 16.6147 11.3262 17.3325 8.06846C17.4651 7.46796 16.989 6.90348 16.3719 6.90348ZM4.79265 7.07334C4.79265 7.5832 4.37414 8.00022 3.86245 8.00022C3.35076 8.00022 2.93228 7.58301 2.93228 7.07334V5.57387C2.93228 5.06401 3.35076 4.64699 3.86245 4.64699C4.37414 4.64699 4.79265 5.06401 4.79265 5.57387V7.07334ZM8.02259 7.07334C8.02259 7.5832 7.60413 8.00022 7.09246 8.00022C6.58073 8.00022 6.16227 7.58301 6.16227 7.07334V5.57387C6.16227 5.06401 6.58092 4.64699 7.09246 4.64699C7.60413 4.64699 8.02259 5.06401 8.02259 5.57387V7.07334Z"
                 fill="white"
               />
-            </svg>
+            </svg> */}
+            <Image
+              src="/icons/walletconnect.svg"
+              alt="walletConnet"
+              width={14}
+              height={14}
+            />
 
             <span className="font-inter text-white">Connect wallet</span>
           </button>
