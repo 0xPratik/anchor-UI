@@ -133,7 +133,7 @@ const Layout = ({ children }: Props) => {
             </a>
           </Link>
         </div>
-        {/* main middle bar */}
+        {/* main middle bar fixes */}
         <div className="grow h-screen pb-2 bg-black   overflow-y-auto overflow-x-auto">
           {children}
         </div>
