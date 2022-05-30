@@ -6,19 +6,22 @@ import Image from "next/image";
 type Props = {
   networks: Array<{
     name: string;
+    endpoint:string;
   }>;
   selected: {
     name: string;
+    endpoint:string;
   };
   setSelected: Dispatch<
     SetStateAction<{
       name: string;
-      rpc: string;
+      endpoint: string;
     }>
   >;
 };
 
 const AddressSelect = ({ networks, selected, setSelected }: Props) => {
+  console.log("SELECT ADDRESS",networks)
   return (
     <Listbox value={selected} onChange={setSelected}>
       <div className="relative mt-1 w-56 ">
@@ -40,7 +43,7 @@ const AddressSelect = ({ networks, selected, setSelected }: Props) => {
             </svg>
           </span>
           <span className="block truncate font-inter font-medium px-1 my-auto leading-[0.875rem]">
-            {selected.name}
+            {selected.name ? selected.name : "Select Network"}
           </span>
           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
             <svg

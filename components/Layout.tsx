@@ -21,6 +21,7 @@ const Layout = ({ children }: Props) => {
       <div className="flex divide-x divide-[#2B2B2B]">
         {/* left  side bar */}
         <div className="w-[4.5rem] h-screen  flex flex-col">
+          {/* IDL LINK */}
           <Link href="/">
             <a
               className={classnames(
@@ -58,6 +59,7 @@ const Layout = ({ children }: Props) => {
               </div>
             </a>
           </Link>
+          {/* Test LINK */}
           <Link href="/test">
             <a
               className={classnames(
@@ -95,6 +97,7 @@ const Layout = ({ children }: Props) => {
               </div>
             </a>
           </Link>
+          {/* DOCS LINK */}
           <Link href="/docs">
             <a
               className={classnames(

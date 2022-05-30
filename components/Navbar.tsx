@@ -3,16 +3,15 @@ import React, { useState } from "react";
 import AddressButton from "./common/AddressButton";
 import AddressSelect from "./common/AddressSelect";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import {NETWORKS} from "../constants/connections"
 
 type Props = {};
 
 const Navbar = (props: Props) => {
-  const networks = [
-    { name: "devnet", rpc: "https://metaplex.devnet.rpcpool.com/" },
-    { name: "mainnet", rpc: "https://api.mainnet-beta.solana.com" },
-    { name: "localnet", rpc: "http://localhost:8899" },
-  ];
-  const [selected, setSelected] = useState(networks[0]);
+
+  const [selected, setSelected] = useState(NETWORKS[0]);
+
+  console.log("CHEKC",selected)
   return (
     <nav className="px-4 py-3  bg-black border-b border-[#2B2B2B]">
       <div className="flex flex-row  justify-between items-center mx-auto">
@@ -153,7 +152,7 @@ const Navbar = (props: Props) => {
             </li>
             <li>
               <AddressSelect
-                networks={networks}
+                networks={NETWORKS}
                 selected={selected}
                 setSelected={setSelected}
               />
