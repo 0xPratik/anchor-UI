@@ -35,6 +35,8 @@ Consider Supporting us:
 
 We encourage everyone to contribute, submit issues, PRs, discuss. Every kind of help is welcome.
 
+- [Dhruv](https://github.com/dhruvsol)
+
 ## Maintainers
 
 - [Pratik](https://github.com/0xPratik)
