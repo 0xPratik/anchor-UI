@@ -36,11 +36,7 @@ const WalletConnect: NextPage = () => {
               Connect Wallet
             </p>
           </div>
-          <AddressSelect
-            networks={networks}
-            selected={selected}
-            setSelected={setSelected}
-          />
+      
           <button
             className={`bg-[#4773E3]  font-medium text-xs mt-1 py-2 px-1 rounded-sm space-x-3 flex justify-center items-center h-fit`}
           >
