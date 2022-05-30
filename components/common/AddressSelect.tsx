@@ -6,11 +6,11 @@ import Image from "next/image";
 type Props = {
   networks: Array<{
     name: string;
-    endpoint:string;
+    endpoint: string;
   }>;
   selected: {
     name: string;
-    endpoint:string;
+    endpoint: string;
   };
   setSelected: Dispatch<
     SetStateAction<{
@@ -21,43 +21,29 @@ type Props = {
 };
 
 const AddressSelect = ({ networks, selected, setSelected }: Props) => {
-  console.log("SELECT ADDRESS",networks)
+  console.log("SELECT ADDRESS", networks);
   return (
     <Listbox value={selected} onChange={setSelected}>
       <div className="relative mt-1 w-56 ">
-        <Listbox.Button className="bg-[#232323] relative w-full rounded-sm cursor-default  text-white py-2 pl-3 pr-10 text-left flex flex-row  ">
+        <Listbox.Button className="bg-[#232323] relative w-full rounded-sm cursor-default  text-white py-2 pl-3 pr-10 text-left flex flex-row items-center space-x-2 ">
           <span className="">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-              />
-            </svg>
+            <Image
+              src="/icons/selectnetwork.svg"
+              alt="selectnetwork"
+              width={24}
+              height={22}
+            />
           </span>
           <span className="block truncate font-inter font-medium px-1 my-auto leading-[0.875rem]">
             {selected.name ? selected.name : "Select Network"}
           </span>
           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
+            <Image
+              src="/icons/dropdown.svg"
+              alt="dropdown"
+              width={24}
+              height={24}
+            />
           </span>
         </Listbox.Button>
         <Transition

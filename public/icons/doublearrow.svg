@@ -1,0 +1,23 @@
+<svg
+            className="my-auto m-2"
+            width="14"
+            height="14"
+            viewBox="0 0 14 14"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1.1665 11.0832L6.4165 6.99984L1.1665 2.9165V11.0832Z"
+              stroke="white"
+              strokeWidth="1.23"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M7.5835 11.0832L12.8335 6.99984L7.5835 2.9165V11.0832Z"
+              stroke="white"
+              strokeWidth="1.23"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>

@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import React from "react";
+
 import { useAuth } from "../context/IdlContext";
 type Props = {};
 const DynamicTestConnect = dynamic(
