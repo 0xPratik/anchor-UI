@@ -40,5 +40,4 @@ We encourage everyone to contribute, submit issues, PRs, discuss. Every kind of 
 ## Maintainers
 
 - [Pratik](https://github.com/0xPratik)
-- [Deep](https://github.com/0xdeepmehta)
-- [Sagar](https://github.com/Sagargajare)
+
