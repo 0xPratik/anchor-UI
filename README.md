@@ -25,11 +25,6 @@ https://youtu.be/af6giQIuOc8
 - Copy Program Logs
 
 
-# Support
-
-Consider Supporting us:
-
-- SOL Address : DBcPYyWRE1TPASCLLXim2A1tX8uJacrzU9kqYZ9bio3Y
 
 ## Contributions
 
